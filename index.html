@@ -1,99 +1,164 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>LIFY Muncheat's</title>
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: #fefefe;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>LIFY Muncheat's</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #fefefe;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
 
-        .container {
-            text-align: center;
-            background-color: #ffffff;
-            border-radius: 16px;
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
-            padding: 40px 30px;
-            width: 90%;
-            max-width: 450px;
-        }
+    .container {
+      text-align: center;
+      background-color: #ffffff;
+      border-radius: 16px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+      padding: 40px 30px;
+      width: 90%;
+      max-width: 450px;
+      position: relative;
+    }
 
-        .title {
-            font-size: 28px;
-            font-weight: bold;
-            color: #333;
-            margin-bottom: 20px;
-        }
+    .title {
+      font-size: 28px;
+      font-weight: bold;
+      color: #333;
+      margin-bottom: 20px;
+    }
 
-        .logo {
-            width: 180px;
-            height: auto;
-            margin-bottom: 25px;
-        }
+    .logo {
+      width: 180px;
+      height: auto;
+      margin-bottom: 15px;
+    }
 
-        .bibd-number {
-            font-size: 24px;
-            font-weight: bold;
-            color: #444;
-            margin-bottom: 20px;
-        }
+    .subtitle,
+    .account-name {
+      font-size: 16px;
+      color: #666;
+      margin: 5px 0 15px 0;
+    }
 
-        .copy-btn {
-            background-color: #ff6b6b;
-            color: #fff;
-            padding: 12px 24px;
-            font-size: 16px;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
+    .bibd-number {
+      font-size: 24px;
+      font-weight: bold;
+      color: #444;
+      margin-bottom: 20px;
+    }
 
-        .copy-btn:hover {
-            background-color: #e74c3c;
-        }
+    .copy-btn {
+      background-color: #ff6b6b;
+      color: #fff;
+      padding: 12px 24px;
+      font-size: 16px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
 
-        .copy-btn:focus {
-            outline: none;
-        }
-    </style>
+    .copy-btn:hover {
+      background-color: #e74c3c;
+    }
+
+    .copy-btn:focus {
+      outline: none;
+    }
+
+    .copied-popup {
+      display: none;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      bottom: 105px;
+      background-color: #2ecc71;
+      color: white;
+      padding: 8px 16px;
+      border-radius: 6px;
+      font-size: 14px;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .copied-popup.show {
+      display: block;
+      opacity: 1;
+    }
+
+    .qr-section {
+      margin-top: 30px;
+    }
+
+    .qr-section img {
+      width: 150px;
+      height: auto;
+      border-radius: 8px;
+    }
+
+    .qr-section p {
+      margin-top: 10px;
+      font-size: 14px;
+      color: #777;
+    }
+  </style>
 </head>
 <body>
 
-    <div class="container">
-        <!-- Title -->
-        <div class="title">LIFY Muncheat's</div>
+  <div class="container">
+    <!-- Title -->
+    <div class="title">LIFY Muncheat's</div>
 
-        <!-- Logo -->
-        <img src="Piqah logo.png" alt="LIFY Muncheat's Logo" class="logo">
+    <!-- Logo -->
+    <img src="Piqah logo.png" alt="LIFY Muncheat's Logo" class="logo">
 
-        <!-- BIBD Number -->
-        <div class="bibd-number" id="bibdNumber">00012021492090</div>
+    <!-- Subtitle and Account Name -->
+    <div class="subtitle">Here's the BIBD Number</div>
+    <div class="account-name">Acc Name: Afiqaahzafirah</div>
 
-        <!-- Copy Button -->
-        <button class="copy-btn" onclick="copyBIBD()">Copy BIBD Number</button>
+    <!-- BIBD Number -->
+    <div class="bibd-number" id="bibdNumber">00012021492090</div>
+
+    <!-- Copy Success Popup -->
+    <div id="copiedPopup" class="copied-popup">Number Copied!!</div>
+
+    <!-- Copy Button -->
+    <button class="copy-btn" onclick="copyBIBD()">Copy BIBD Number</button>
+
+    <!-- QR Code Section -->
+    <div class="qr-section">
+      <a href="https://asfyziq.github.io/Piqah-s-QR-code/" target="_blank">
+        <img src="Piqah QR Code.png" alt="QR Code to Link">
+      </a>
+      <p>Scan or tap the QR code</p>
     </div>
+  </div>
 
-    <script>
-        function copyBIBD() {
-            const bibdNumber = document.getElementById('bibdNumber').innerText;
-            navigator.clipboard.writeText(bibdNumber)
-                .then(() => {
-                    alert("BIBD number copied to clipboard!");
-                })
-                .catch((err) => {
-                    alert("Failed to copy: " + err);
-                });
-        }
-    </script>
+  <script>
+    function copyBIBD() {
+      const bibdNumber = document.getElementById('bibdNumber').innerText;
+      const popup = document.getElementById('copiedPopup');
+
+      navigator.clipboard.writeText(bibdNumber)
+        .then(() => {
+          popup.classList.add('show');
+
+          setTimeout(() => {
+            popup.classList.remove('show');
+          }, 2000);
+        })
+        .catch((err) => {
+          alert("Failed to copy: " + err);
+        });
+    }
+  </script>
 
 </body>
 </html>
