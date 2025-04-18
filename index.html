@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>LIFY Muncheat's</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #fefefe;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            text-align: center;
+            background-color: #ffffff;
+            border-radius: 16px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+            padding: 40px 30px;
+            width: 90%;
+            max-width: 450px;
+        }
+
+        .title {
+            font-size: 28px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .logo {
+            width: 180px;
+            height: auto;
+            margin-bottom: 25px;
+        }
+
+        .bibd-number {
+            font-size: 24px;
+            font-weight: bold;
+            color: #444;
+            margin-bottom: 20px;
+        }
+
+        .copy-btn {
+            background-color: #ff6b6b;
+            color: #fff;
+            padding: 12px 24px;
+            font-size: 16px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .copy-btn:hover {
+            background-color: #e74c3c;
+        }
+
+        .copy-btn:focus {
+            outline: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Title -->
+        <div class="title">LIFY Muncheat's</div>
+
+        <!-- Logo -->
+        <img src="Piqah logo.png" alt="LIFY Muncheat's Logo" class="logo">
+
+        <!-- BIBD Number -->
+        <div class="bibd-number" id="bibdNumber">00012021492090</div>
+
+        <!-- Copy Button -->
+        <button class="copy-btn" onclick="copyBIBD()">Copy BIBD Number</button>
+    </div>
+
+    <script>
+        function copyBIBD() {
+            const bibdNumber = document.getElementById('bibdNumber').innerText;
+            navigator.clipboard.writeText(bibdNumber)
+                .then(() => {
+                    alert("BIBD number copied to clipboard!");
+                })
+                .catch((err) => {
+                    alert("Failed to copy: " + err);
+                });
+        }
+    </script>
+
+</body>
+</html>
